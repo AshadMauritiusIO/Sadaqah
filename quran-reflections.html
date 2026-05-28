@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surah At-Tawbah 9:17-19 | A Reflection on Guardianship</title>
+    <!-- Importing Arabic-friendly and sophisticated modern fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Raleway:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-canvas: #faf8f5; /* Off-white, parchment feel */
+            --primary: #a1783d;   /* Warm, rich gold/bronze */
+            --secondary: #1a334e; /* Deep, sophisticated navy */
+            --text-main: #333;
+            --text-light: #5a5a5a;
+            --arab-color: #1a334e; 
+            --arab-highlight: #d4a760; 
+            --shadow-subtle: 0 4px 15px rgba(0,0,0,0.05);
+            --border-radius: 8px;
+            --font-ar: 'Amiri', serif;
+            --font-en: 'Raleway', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --font-heading: 'Cinzel', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-en);
+            background-color: var(--bg-canvas);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(250, 248, 245, 0.96), rgba(250, 248, 245, 0.98)),
+                url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMCA5MGw5MC05MEwxMDAgMTBsLTkwIDkwSDB6TTAgNDBsNDAtNDBINTAgMDBMMCA1MHowTTAgMGw5MCA5MEw5MCAxMDAgMCAxMHoiIGZpbGw9IiNhMTc4M2QiIGZpbGwtb3BhY2l0eT0iMC4wMyIvPjwvc3ZnPg==');
+            background-size: 100px 100px;
+            z-index: -1;
+        }
+
+        /* Nav Header Utility Elements */
+        .top-navbar {
+            background: #fff;
+            box-shadow: var(--shadow-subtle);
+            border-bottom: 1px solid rgba(161, 120, 61, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item-link {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item-link:hover {
+            color: var(--primary);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 80px 20px;
+        }
+
+        #header {
+            height: 65vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(250, 248, 245, 0) 0%, rgba(250, 248, 245, 0.8) 70%),
+                        url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZyBmaWxsPSIjYTE3ODNkIiBmaWxsLW9wYWNpdHk9IjAuMDUiPjxwYXRoIGQ9Ik0wIDEwaDkwTDEwMCAyMEwxMCAyMEgwek0xMCAwSDBMOTEwIDEwMEwxMDAgOTAgOTAgOTAgNEg5MHoiLz48cGF0aCBkPSJNMTAwIDkwaC05MEwwIDgwTDEwMCA4MEgwSDB6TTkwIDQwSDEwMEwwIDMwTDEwIDMwSDBIOHoiLz48L2c+PC9zdmc+') center/contain no-repeat;
+        }
+        #header .intro-text { max-width: 700px; z-index: 2; }
+        #header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        #header h2 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--primary);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+        #header p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 40px;
+        }
+        .btn-interact {
+            display: inline-block;
+            padding: 14px 30px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-interact:hover {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        #core-presentation { padding-bottom: 120px; }
+
+        .islamic-separator { text-align: center; margin-bottom: 60px; position: relative; }
+        .islamic-separator h3 {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--secondary);
+            padding: 0 20px;
+            background: var(--bg-canvas);
+            position: relative;
+            z-index: 2;
+        }
+        .islamic-separator::before {
+            content: "";
+            position: absolute;
+            top: 50%; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(to right, rgba(161, 120, 61, 0) 0%, rgba(161, 120, 61, 0.4) 50%, rgba(161, 120, 61, 0) 100%);
+            z-index: 1;
+        }
+
+        .verse-panel {
+            background: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-subtle);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+        .verse-panel.active {
+            border-color: rgba(161, 120, 61, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .verse-header {
+            padding: 30px 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+        .verse-header:hover { background-color: #fdfaf6; }
+        .verse-title-area { display: flex; align-items: center; }
+        .v-num {
+            font-family: var(--font-heading); font-size: 1rem; color: #d1b896;
+            margin-right: 20px; border: 1px solid #d1b896; border-radius: 50%;
+            width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+        }
+        .v-title { font-family: var(--font-heading); font-size: 1.1rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; }
+        .v-icon { font-size: 1.4rem; color: var(--primary); transition: transform 0.3s ease; }
+        .verse-panel.active .v-icon { transform: rotate(180deg); }
+
+        .verse-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; padding: 0 40px; }
+        .verse-panel.active .verse-content { max-height: 2000px; padding-bottom: 40px; }
+
+        .arabic-block {
+            font-family: var(--font-ar); font-size: 2.2rem; line-height: 1.9; color: var(--arab-color);
+            text-align: right; direction: rtl; margin-bottom: 30px; padding: 25px;
+            border-radius: var(--border-radius); position: relative; background: #fdfaf6;
+        }
+
+        .analysis-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 30px; }
+        .analysis-left h4, .analysis-right h4 {
+            font-family: var(--font-display); font-size: 1.5rem; color: var(--primary); font-weight: 400;
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(161, 120, 61, 0.2);
+        }
+        .analysis-text { font-size: 1rem; line-height: 1.8; color: var(--text-main); text-align: justify; }
+        .analysis-text p { margin-bottom: 15px; }
+        .highlight-secondary { color: var(--secondary); font-weight: 500; }
+
+        .concept-list { list-style: none; margin-top: 20px; }
+        .concept-item { display: flex; margin-bottom: 15px; background: #fcfbf8; padding: 15px; border-radius: 4px; border-left: 3px solid transparent; transition: all 0.3s ease; }
+        .concept-item:hover { border-left-color: var(--primary); background: #fff; transform: translateX(5px); }
+        .c-icon { font-size: 1.3rem; color: #d1b896; margin-right: 15px; margin-top: 3px; }
+        .c-text strong { display: block; font-family: var(--font-heading); font-size: 0.9rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .c-text span { font-size: 0.95rem; line-height: 1.6; color: var(--text-light); }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+        .comparison-table th, .comparison-table td { text-align: left; padding: 15px 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .comparison-table th { font-family: var(--font-heading); font-size: 0.85rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 1px; background-color: #fbf9f6; }
+        .comparison-table td:first-child { color: var(--primary); font-weight: 500; }
+
+        footer { text-align: center; padding: 40px; font-size: 0.9rem; color: var(--text-light); border-top: 1px solid rgba(161, 120, 61, 0.1); }
+        footer strong { color: var(--secondary); }
+
+        @media (max-width: 900px) {
+            .analysis-grid { grid-template-columns: 1fr; gap: 20px; }
+            .arabic-block { font-size: 1.9rem; }
+        }
+        @media (max-width: 600px) {
+            #header h1 { font-size: 2rem; }
+            #header h2 { font-size: 1.4rem; }
+            .verse-header { padding: 20px; }
+            .v-num { width: 32px; height: 32px; margin-right: 12px; font-size: 0.9rem;}
+            .v-title { font-size: 1rem; }
+            .verse-content { padding: 0 20px; }
+            .arabic-block { font-size: 1.6rem; padding: 15px; }
+            .section-container { padding: 40px 15px; }
+            .nav-wrapper { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Utility Navigation Bar Area -->
+    <nav class="top-navbar">
+        <div class="nav-wrapper">
+            <a href="index.html" class="nav-brand">← Back to Governance Hub</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item-link">Framework Overview</a>
+                <a href="Manifesto.html" class="nav-item-link">Project Node</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header id="header">
+        <div class="section-container">
+            <div class="intro-text">
+                <h1>Surah At-Tawbah</h1>
+                <h2>Reflections on Spiritual Guardianship & True Merit</h2>
+                <p>Verses 17, 18, and 19 establish the fundamental principles of *‘Imārah* (stewardship) of sacred spaces, differentiating between external ritual and sincere internal conviction.</p>
+                <a href="#core-presentation" class="btn-interact">Begin Exploration</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Content Presentation Area -->
+    <main id="core-presentation">
+        <div class="section-container">
+            
+            <div class="islamic-separator">
+                <h3>The Commentary</h3>
+            </div>
+
+            <!-- PANEL 1: Verse 17 -->
+            <div class="verse-panel active" id="panel-v17">
+                <div class="verse-header" onclick="togglePanel('panel-v17')">
+                    <div class="verse-title-area">
+                        <span class="v-num">17</span>
+                        <span class="v-title">The Incompatibility of Shirk</span>
+                    </div>
+                    <span class="v-icon">&#9662;</span>
+                </div>
+                <div class="verse-content">
+                    <div class="arabic-block">
+                        مَا كَانَ لِلْمُشْرِكِينَ أَنْ يَعْمُرُوا مَسَاجِدَ اللَّهِ شَاهِدِينَ عَلَىٰ أَنْفُسِهِمْ بِالْكُفْرِ ۚ أُولَٰئِكَ حَبِطَتْ أَعْمَالُهُمْ وَفِي النَّارِ هُمْ خَالِدُونَ
+                    </div>
+                    <div class="analysis-grid">
+                        <div class="analysis-left">
+                            <h4>The Translation</h4>
+                            <div class="analysis-text">
+                                <p><em>"It is not for the polytheists to maintain the mosques of Allah while they openly profess disbelief. Their deeds are void, and they will be in the Fire forever."</em></p>
+                            </div>
+                        </div>
+                        <div class="analysis-right">
+                            <h4>Structural Meaning</h4>
+                            <div class="analysis-text">
+                                <p><strong class="highlight-secondary">The Concept of *‘Yá‘murū’* (عمارة):</strong> In Arabic, 'maintenance' refers not just to physical upkeep but also to spiritual population—assembling for worship, administration, and security.</p>
+                                <p><strong class="highlight-secondary">The Logical Contradiction:</strong> A *masjid* is a structure dedicated exclusively to the Oneness of God (*Tawhid*). It is conceptually impossible for those who actively commit *shirk* to be the legitimate guardians of a space designed to eradicate that very practice.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 2: Verse 18 -->
+            <div class="verse-panel" id="panel-v18">
+                <div class="verse-header" onclick="togglePanel('panel-v18')">
+                    <div class="verse-title-area">
+                        <span class="v-num">18</span>
+                        <span class="v-title">Criteria for True Guardianship</span>
+                    </div>
+                    <span class="v-icon">&#9662;</span>
+                </div>
+                <div class="verse-content">
+                    <div class="arabic-block">
+                        إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَأَقَامَ الصَّلَاةَ وَآتَى الزَّكَاةَ وَلَمْ يَخْشَ إِلَّا اللَّهَ ۖ فَعَسَىٰ أُولَٰئِكَ أَنْ يَكُونُوا مِنَ الْمُهْتَدِينَ
+                    </div>
+                    <div class="analysis-grid">
+                        <div class="analysis-left">
+                            <h4>The Translation</h4>
+                            <div class="analysis-text">
+                                <p><em>"The mosques of Allah should *only* be maintained by those who believe in Allah and the Last Day, establish prayer, pay alms-tax, and fear none but Allah. It is right to hope that they will be among the truly guided."</em></p>
+                                <p>The restrictive particle *Innamā* (إِنَّمَا) defines a clear, exclusive boundary.</p>
+                            </div>
+                        </div>
+                        <div class="analysis-right">
+                            <h4>Required Attributes</h4>
+                            <ul class="concept-list">
+                                <li class="concept-item">
+                                    <div class="c-icon">&#10003;</div>
+                                    <div class="c-text">
+                                        <strong>Belief in Allah & the Last Day</strong>
+                                        <span>The essential foundation; recognizing absolute accountability.</span>
+                                    </div>
+                                </li>
+                                <li class="concept-item">
+                                    <div class="c-icon">&#10003;</div>
+                                    <div class="c-text">
+                                        <strong>Establishing Prayer & Alms</strong>
+                                        <span>Regular manifestation of submission within the mosque and community welfare.</span>
+                                    </div>
+                                </li>
+                                <li class="concept-item">
+                                    <div class="c-icon">&#10003;</div>
+                                    <div class="c-text">
+                                        <strong>Fearing None but Allah</strong>
+                                        <span>The critical administrative trait: making decisions based solely on divine principle, free from worldly intimidation.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 3: Verse 19 -->
+            <div class="verse-panel" id="panel-v19">
+                <div class="verse-header" onclick="togglePanel('panel-v19')">
+                    <div class="verse-title-area">
+                        <span class="v-num">19</span>
+                        <span class="v-title">Re-evaluating True Merit</span>
+                    </div>
+                    <span class="v-icon">&#9662;</span>
+                </div>
+                <div class="verse-content">
+                    <div class="arabic-block">
+                        أَجَعَلْتُمْ سِقَايَةَ الْحَاجِّ وَعِمَارَةَ الْمَسْجِدِ الْحَرَامِ كَمَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ وَجَاهَدَ فِي سَبِيلِ اللَّهِ ۚ لَا يَسْتَوُونَ عِنْدَ اللَّهِ ۗ وَاللَّهُ لَا يَهْدِي الْقَوْمَ الظَّالِمِينَ
+                    </div>
+                    <div class="analysis-grid">
+                        <div class="analysis-left">
+                            <h4>Context & Translation</h4>
+                            <div class="analysis-text">
+                                <p><em>"Do you consider providing the pilgrims with water and maintaining the Sacred Mosque as equal to believing in Allah and the Last Day and striving in the cause of Allah? They are not equal in Allah's sight."</em></p>
+                                <p><strong class="highlight-secondary">The Historical Argument:</strong> Before the conquest of Makkah, the Quraish took immense pride in inherited civic roles: *Siqayah* (water supply) and *‘Imarah* (physical stewardship) of the Ka'bah. This verse directly recalibrates true value.</p>
+                            </div>
+                        </div>
+                        <div class="analysis-right">
+                            <h4>The Correction of Merit</h4>
+                            <div class="analysis-text">
+                                <table class="comparison-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Claimed Merit</th>
+                                            <th>Divine Metric</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>*Siqayah* (Water Supply)</td>
+                                            <td>Active Faith (Conviction)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>*‘Imarah* (Physical Maintenance)</td>
+                                            <td>Striving / Sacrifice (*Jihad*)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="section-container">
+            <p>&copy; 2026 Commentary Analysis Framework • Masjid Kartabah Administrative Architecture.</p>
+        </div>
+    </footer>
+
+    <script>
+        function togglePanel(panelId) {
+            const targetPanel = document.getElementById(panelId);
+            const content = targetPanel.querySelector('.verse-content');
+            const isActive = targetPanel.classList.contains('active');
+
+            document.querySelectorAll('.verse-panel').forEach(panel => {
+                panel.classList.remove('active');
+                panel.querySelector('.verse-content').style.maxHeight = null;
+            });
+
+            if (!isActive) {
+                targetPanel.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 100 + "px";
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const activePanel = document.querySelector('.verse-panel.active');
+            if (activePanel) {
+                const content = activePanel.querySelector('.verse-content');
+                content.style.maxHeight = content.scrollHeight + 100 + "px";
+            }
+        });
+    </script>
+</body>
+</html>
