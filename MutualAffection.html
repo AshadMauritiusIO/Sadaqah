@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayt Al-Hikmah | The Architecture of Mutual Affection & Public Benefit</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Smooth CSS Accordion Transitions */
+        .content-toggle-zone {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 330ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
+            opacity: 0;
+        }
+        .content-toggle-zone.expanded {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .content-inner {
+            overflow: hidden;
+        }
+        
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Custom Scrollbar */
+        .premium-scrollbar::-webkit-scrollbar {
+            height: 5px;
+            width: 5px;
+        }
+        .premium-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 999px;
+        }
+        .premium-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 999px;
+        }
+        .premium-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.4);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        slate: { 950: '#0b1329' },
+                        gold: { 100: '#f4ebd0', 400: '#d4af37', 500: '#aa7c11' },
+                        emeraldCustom: { 800: '#064e3b', 900: '#022c22' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-gold-400 selection:text-slate-950 antialiased overflow-x-hidden">
+    
+    <!-- NAVIGATION BAR -->
+    <nav id="main-nav" class="fixed top-0 left-0 w-full z-40 bg-slate-950/90 backdrop-blur-md border-b border-white/5">
+        <div class="px-4 sm:px-6 lg:px-16 pt-2 flex justify-between items-center gap-2">
+            
+            <!-- Logo & Back Link to Main Platform -->
+            <div class="px-2 py-2 rounded-lg border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-gold-400/30 hover:bg-gold-400/[0.02] transition-all duration-300 leading-[1.0]">
+                <a href="Redesign.html" class="text-base sm:text-lg font-arabic font-semibold tracking-widest text-white hover:text-gold-400 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-xs text-gold-400"></i>
+                    <span>Bayt <span class="text-gold-400">al Hiqmah</span></span>
+                </a>
+            </div>
+
+            <!-- In-Page Anchor Navigation -->
+            <div class="hidden lg:flex space-x-8 text-xs font-medium tracking-widest uppercase text-slate-400">
+                <a href="#structural-decoding" class="hover:text-gold-400 transition-colors py-2">Structural Decoding</a>
+                <a href="#hadith-science" class="hover:text-gold-400 transition-colors py-2">Hadith Transmission</a>
+                <a href="#socio-behavioral" class="hover:text-gold-400 transition-colors py-2">Socio-Behavioral Matrix</a>
+                <a href="#educational-takeaways" class="hover:text-gold-400 transition-colors py-2">Civic Blueprint</a>
+            </div>
+            
+            <div class="flex items-center gap-4 flex-shrink-0 ml-auto lg:ml-0">
+                <div class="relative inline-block text-left flex-shrink-0">
+                    <select id="lang-selector" class="bg-slate-900 text-gold-400 text-[10px] sm:text-xs border border-gold-400/20 rounded-md px-1.5 sm:px-2.5 py-1.5 focus:outline-none focus:border-gold-400/60 font-mono cursor-pointer transition-colors">
+                        <option value="en">EN</option>
+                        <option value="ar">AR</option>
+                    </select>
+                </div>
+                <div class="flex items-center flex-shrink-0 select-none">
+                    <div class="px-2 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-md hover:border-gold-400/50 hover:bg-gold-400/[0.05] shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300 gap-2 inline-flex leading-[1.0] items-center justify-center text-center w-fit mx-auto whitespace-nowrap">
+                        <i class="fa-solid fa-mosque text-gold-500 mx-1"></i>          
+                        <div class="font-arabic font-semibold text-base sm:text-lg text-white tracking-widest antialiased" dir="rtl">
+                            بَيْت الحِكْمَة
+                        </div>
+                        <i class="fa-solid fa-mosque text-gold-500 mx-1"></i>          
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Full-width Sub-nav Info Banner -->
+        <div class="w-full border-t border-white/5 py-1 bg-slate-950/60 text-center overflow-hidden">
+            <p class="text-xs sm:text-sm font-mono tracking-wider text-amber-400/70 whitespace-nowrap block">
+                Educational & Scientific Hadith Analysis Module • Civic & Social Ethics Series
+            </p>
+        </div>
+    </nav>
+
+    <!-- HERO / HEADER SECTION -->
+    <header class="relative min-h-[50vh] flex items-center justify-center pt-32 pb-20 overflow-hidden px-4 border-b border-white/10">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(6,78,59,0.18),transparent_80%)]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_60%,#0b1329_100%)]"></div>
+        
+        <div class="max-w-4xl text-center relative z-10 space-y-6 flex flex-col items-center">
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gold-400/30 bg-gold-400/5 text-gold-400 text-[11px] font-mono tracking-widest uppercase">
+                <i class="fa-solid fa-scroll"></i> Hadith Science & Social Blueprint
+            </div>
+
+            <!-- Arabic Callout Title Box -->
+            <div class="w-full max-w-3xl mx-auto p-6 sm:p-8 rounded-2xl border border-emerald-500/30 bg-slate-900/80 backdrop-blur-md relative group shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+                <div class="font-arabic text-2xl sm:text-3xl lg:text-4xl text-gold-100 tracking-wide leading-loose mb-4 font-semibold" dir="rtl">
+                    « الْمُؤْمِنُ يَأْلَفُ وَيُؤْلَفُ، وَلَا خَيْرَ فِيمَنْ لَا يَأْلَفُ وَلَا يُؤْلَفُ، وَخَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ »
+                </div>
+                <div class="text-xs sm:text-sm text-slate-300 font-mono tracking-wide italic leading-relaxed border-t border-white/10 pt-4">
+                    "Al-mu'minu ya'lafu wa yu'laf, wa lā khayra fīman lā ya'lafu wa lā yu'laf, wa khayru-nnāsi anfa‘uhum li-nnās."
+                </div>
+                <div class="mt-3 font-mono text-[10px] text-emerald-400 tracking-widest uppercase">
+                    Transmitted via Sahl ibn Sa'd, Jabir & Abu Hurayrah • Proclaimed by Umar ibn al-Khattab
+                </div>
+            </div>
+
+            <div class="h-[1px] w-20 bg-amber-500/50 mx-auto"></div>  
+
+            <h1 class="text-2xl sm:text-4xl font-serif text-white tracking-wide">
+                The Architecture of Mutual Affection & Public Benefit
+            </h1>
+
+            <p class="text-sm sm:text-base text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+                A comprehensive structural, morphological, and socio-behavioral breakdown revealing the prophetic blueprint for social cohesion, emotional intelligence, and public service.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT MODULES -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-20">
+
+        <!-- SECTION 1: STRUCTURAL & MORPHOLOGICAL DECODING -->
+        <section id="structural-decoding" class="space-y-8">
+            <div class="border-b border-gold-400/20 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-xs font-bold">01</span>
+                    <h2 class="text-xl sm:text-2xl font-serif text-white">Text and Structural Decoding</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1 font-light">
+                    Symmetrical linguistic pairs forming a deliberate psychological and ethical sequence.
+                </p>
+            </div>
+
+            <!-- Equation Banner -->
+            <div class="p-6 rounded-xl border border-emerald-500/30 bg-slate-900/60 backdrop-blur-sm text-center">
+                <span class="text-[10px] font-mono uppercase tracking-widest text-gold-400 block mb-2">The Psychological & Ethical Sequence</span>
+                <div class="flex flex-wrap items-center justify-center gap-3 text-sm sm:text-lg font-mono text-slate-200">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10 font-semibold text-emerald-400">Faith (Iman)</span>
+                    <i class="fa-solid fa-arrow-right text-gold-400 text-xs"></i>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10 font-semibold text-amber-300">Mutual Affection (Ulfah)</span>
+                    <i class="fa-solid fa-arrow-right text-gold-400 text-xs"></i>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-950 border border-white/10 font-semibold text-teal-300">Public Benefit (Naf')</span>
+                </div>
+            </div>
+
+            <!-- Morphological Analysis Accordions -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Root 1: Alif-Lam-Fa -->
+                <div class="bg-slate-900 rounded-xl border border-white/5 overflow-hidden shadow-lg">
+                    <div onclick="toggleInteractivePanel(this)" class="p-4 bg-slate-900/90 hover:bg-slate-800/50 flex justify-between items-center cursor-pointer select-none transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-heart text-gold-400 text-sm"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-200">1. The Root أ - ل - ف (Alif / Lam / Fa)</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-slate-500 text-xs transition-transform duration-300 toggle-icon"></i>
+                    </div>
+                    <div class="content-toggle-zone expanded">
+                        <div class="content-inner p-5 bg-slate-950/40 border-t border-white/5 space-y-4 text-xs text-slate-300 leading-relaxed font-light">
+                            <p>This root carries the core meaning of joining, bringing together, harmonizing, or becoming intimately familiar. It is the direct opposite of alienation, hostility, or discord.</p>
+                            
+                            <div class="space-y-3 pt-2 border-t border-white/5">
+                                <div class="p-3 rounded-lg bg-slate-900 border border-white/5">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-bold text-emerald-400 uppercase font-mono text-[11px]">يَأْلَفُ (Ya'lafu) — Active Voice</span>
+                                        <span class="font-arabic text-base text-gold-100">فَاعِل</span>
+                                    </div>
+                                    <p class="text-slate-400">"He is friendly / he harmonizes." Represents the <b>proactive</b> effort of an individual to be approachable, open-minded, gentle, and hospitable toward others.</p>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-slate-900 border border-white/5">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-bold text-amber-400 uppercase font-mono text-[11px]">وَيُؤْلَفُ (Wa Yu'laf) — Passive Voice</span>
+                                        <span class="font-arabic text-base text-gold-100">مَفْعُول</span>
+                                    </div>
+                                    <p class="text-slate-400">"And he is befriended / loved." Represents the <b>receptive outcome</b> of good character. He carries a safe, comforting energy that makes it natural for others to love him.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Root 2: Nun-Fa-Ayn -->
+                <div class="bg-slate-900 rounded-xl border border-white/5 overflow-hidden shadow-lg">
+                    <div onclick="toggleInteractivePanel(this)" class="p-4 bg-slate-900/90 hover:bg-slate-800/50 flex justify-between items-center cursor-pointer select-none transition-colors">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-hand-holding-heart text-emerald-400 text-sm"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-200">2. The Root ن - ف - ع (Nun / Fa / 'Ayn)</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-slate-500 text-xs transition-transform duration-300 toggle-icon"></i>
+                    </div>
+                    <div class="content-toggle-zone expanded">
+                        <div class="content-inner p-5 bg-slate-950/40 border-t border-white/5 space-y-4 text-xs text-slate-300 leading-relaxed font-light">
+                            <p>This root denotes utility, material/spiritual benefit, welfare, and constructive output.</p>
+                            
+                            <div class="p-4 rounded-lg bg-slate-900 border border-white/5 space-y-2 mt-2">
+                                <span class="font-bold text-teal-400 uppercase font-mono text-[11px] block">Practical Shift to Action</span>
+                                <p class="text-slate-400">
+                                    The Hadith shifts the focus here from an internal emotional or spiritual state (affection and openness) to a visible, practical, and practical output: <b class="text-slate-200">serving society</b>.
+                                </p>
+                                <p class="text-slate-400 pt-1">
+                                    Affection without utility remains passive; utility without affection risks becoming cold or transactional. True Islamic excellence requires both.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: HADITH SCIENCE & TRANSMISSION -->
+        <section id="hadith-science" class="space-y-8">
+            <div class="border-b border-gold-400/20 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-xs font-bold">02</span>
+                    <h2 class="text-xl sm:text-2xl font-serif text-white">Hadith Science & Transmission (Asnad)</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1 font-light">
+                    Scholarly verification, companion transmission, and public state proclamations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="p-5 rounded-xl border border-white/5 bg-slate-900 space-y-3 relative group hover:border-gold-400/30 transition-colors">
+                    <div class="w-8 h-8 rounded-lg bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 text-xs">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-200 tracking-wide">The Proclamation of Umar</h3>
+                    <p class="text-xs text-slate-400 font-light leading-relaxed">
+                        Scholars of Hadith, such as Al-Haythami in <i>Majma' al-Zawa'id</i>, highlight that <b>Umar ibn al-Khattab</b> delivered this exact message directly from the minbar (pulpit) to establish the fundamental blueprint for civic duty.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-5 rounded-xl border border-white/5 bg-slate-900 space-y-3 relative group hover:border-gold-400/30 transition-colors">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-xs">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-200 tracking-wide">Prophetic Transmission</h3>
+                    <p class="text-xs text-slate-400 font-light leading-relaxed">
+                        The tradition is elevated (<i>Marfu'</i>) directly to the Prophet ﷺ across multiple independent companion chains, notably narrated by Sahl ibn Sa'd, Jabir ibn Abdillah, and Abu Hurayrah.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-5 rounded-xl border border-white/5 bg-slate-900 space-y-3 relative group hover:border-gold-400/30 transition-colors">
+                    <div class="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-xs">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="text-sm font-bold text-slate-200 tracking-wide">Authentification Rating</h3>
+                    <p class="text-xs text-slate-400 font-light leading-relaxed">
+                        Graded as <b>Hasan (Fair & Sound)</b> by classical and contemporary authorities, including Sheikh al-Albani in <i>Sahih al-Jami’</i> (Hadith 6662).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SOCIO-BEHAVIORAL ANALYSIS & MATRIX -->
+        <section id="socio-behavioral" class="space-y-8">
+            <div class="border-b border-gold-400/20 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-xs font-bold">03</span>
+                    <h2 class="text-xl sm:text-2xl font-serif text-white">Socio-Behavioral Analysis</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1 font-light">
+                    Scholastic insights on human flourishing, social affection, and psychological health.
+                </p>
+            </div>
+
+            <!-- Imam Al-Mawardi Blockquote -->
+            <div class="p-6 rounded-xl border border-gold-400/20 bg-slate-900/80 backdrop-blur-sm space-y-3 relative overflow-hidden">
+                <div class="flex items-center gap-2 text-gold-400 text-xs font-mono uppercase tracking-wider">
+                    <i class="fa-solid fa-quote-left"></i> Commentary by Imam al-Mawardi
+                </div>
+                <blockquote class="text-xs sm:text-sm text-slate-300 font-serif italic leading-relaxed pl-4 border-l-2 border-gold-400/50">
+                    "Human flourishing is only achieved through bonds of fellowship and social affection... If a person is neither sociable nor loved by others, he becomes exposed to the grasp of the envious and the domination of enemies... Yet when a person cultivates affection and companionship, he finds strength in others."
+                </blockquote>
+            </div>
+
+            <!-- Behavioral Matrix Table -->
+            <div class="space-y-3">
+                <h3 class="text-xs font-mono font-bold uppercase tracking-wider text-gold-400">Three Tiers of Human Interaction</h3>
+                <div class="overflow-x-auto rounded-xl border border-white/10 bg-slate-900">
+                    <table class="w-full text-left text-xs border-collapse min-w-[650px]">
+                        <thead>
+                            <tr class="bg-slate-950 border-b border-white/10 font-mono text-slate-400 uppercase text-[10px] tracking-wider">
+                                <th class="p-4">Spiritual / Social State</th>
+                                <th class="p-4">Behavioral Manifestation</th>
+                                <th class="p-4">Practical Outcome</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-white/5 text-slate-300 font-light">
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-semibold text-emerald-400 bg-slate-950/40">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-circle-check text-xs"></i>
+                                        <span>High Iman (Faith)</span>
+                                    </div>
+                                </td>
+                                <td class="p-4">Approachable, emotionally intelligent, proactive in building bridges.</td>
+                                <td class="p-4 text-emerald-300"><b>Social Harmony:</b> A closely-knit, trusting, and resilient community.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-semibold text-red-400 bg-slate-950/40">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-circle-xmark text-xs"></i>
+                                        <span>Zero Goodness (Lā Khayra)</span>
+                                    </div>
+                                </td>
+                                <td class="p-4">Isolated, cold, rigid, or combative; refuses to connect or let others close.</td>
+                                <td class="p-4 text-red-300"><b>Fragmentation:</b> Vulnerability to loneliness, division, and decay.</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30 transition-colors">
+                                <td class="p-4 font-semibold text-gold-400 bg-slate-950/40">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-crown text-xs"></i>
+                                        <span>The Highest Excellence</span>
+                                    </div>
+                                </td>
+                                <td class="p-4">Translates internal faith and social bonds into open, structured public benefit.</td>
+                                <td class="p-4 text-gold-300"><b>Institutional Growth:</b> Systems, knowledge sharing, and charity elevating all.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: EDUCATIONAL TAKEAWAYS & CIVIC BLUEPRINT -->
+        <section id="educational-takeaways" class="space-y-8">
+            <div class="border-b border-gold-400/20 pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-xs font-bold">04</span>
+                    <h2 class="text-xl sm:text-2xl font-serif text-white">The Core Educational Takeaway</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1 font-light">
+                    Redefining human value, spiritual maturity, and civic engineering.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4 text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+                    <p>
+                        This Hadith completely redefines what "the best person" looks like in the Islamic paradigm. It argues that true spiritual maturity cannot exist in total isolation or disengaged monasticism.
+                    </p>
+                    <p>
+                        Umar ibn al-Khattab’s insistence on proclaiming this message publicly serves as a timeless reminder: <b class="text-gold-400">the ultimate operational test of our faith and character is our utility to the people around us</b>.
+                    </p>
+                    <p>
+                        True success lies in designing our lives, our daily conduct, our professional skills, and our digital community tools so that they make the path smoother, clearer, and more beneficial for everyone else.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5 p-6 rounded-2xl border border-gold-400/30 bg-gradient-to-br from-slate-900 to-slate-950 space-y-4 shadow-xl">
+                    <div class="flex items-center gap-2 text-xs font-mono text-gold-400 uppercase tracking-wider">
+                        <i class="fa-solid fa-compass"></i> Civic Design Principles
+                    </div>
+                    <ul class="space-y-3 text-xs text-slate-300 font-light">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                            <span><b>Approachability by Design:</b> Cultivate openness and lower barriers to social communication.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                            <span><b>Emotional Safety:</b> Carry an energy that allows others to feel secure and supported.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                            <span><b>Actionable Utility:</b> Channel personal knowledge and resources into public benefit structures.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-slate-950 py-8 text-center text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>Bayt Al-Hikmah Platform • Dedicated to Primary Source Methodologies & Civic Excellence</p>
+            <p class="text-[10px] text-slate-600">Designed as an integrated subset module of Redesign.html</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        // Toggle Accordion Panel Logic (Matching Source 1)
+        function toggleInteractivePanel(headerElement) {
+            const container = headerElement.parentElement;
+            const toggleZone = container.querySelector('.content-toggle-zone');
+            const icon = headerElement.querySelector('.toggle-icon');
+            
+            if (toggleZone.classList.contains('expanded')) {
+                toggleZone.classList.remove('expanded');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                toggleZone.classList.add('expanded');
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Language Switcher (Matching Source 1)
+        document.getElementById('lang-selector').addEventListener('change', (e) => {
+            document.body.setAttribute('dir', e.target.value === 'ar' ? 'rtl' : 'ltr');
+        });
+    </script>
+</body>
+</html>
