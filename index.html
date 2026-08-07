@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayt Al-Hikmah | The Digital House of Wisdom</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* Smooth CSS Accordion Transitions */
+        .content-toggle-zone {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 330ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
+            opacity: 0;
+        }
+        .content-toggle-zone.expanded {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .content-inner {
+            overflow: hidden;
+        }
+        
+        /* Smooth fade-in for dynamic cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Premium scrollbar for horizontal cards & modals */
+        .premium-scrollbar::-webkit-scrollbar,
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 5px;
+            width: 6px;
+        }
+        .premium-scrollbar::-webkit-scrollbar-track,
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 999px;
+        }
+        .premium-scrollbar::-webkit-scrollbar-thumb,
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 999px;
+        }
+        .premium-scrollbar::-webkit-scrollbar-thumb:hover,
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.4);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        slate: { 950: '#0b1329' },
+                        gold: { 100: '#f4ebd0', 400: '#d4af37', 500: '#aa7c11' },
+                        emeraldCustom: { 800: '#064e3b', 900: '#022c22' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-gold-400 selection:text-slate-950 antialiased overflow-x-hidden min-h-screen flex flex-col justify-between">
+    
+    <!-- NAVIGATION BAR -->
+    <nav id="main-nav" class="fixed top-0 left-0 w-full z-40 bg-slate-950/90 backdrop-blur-md border-b border-white/5">
+        <div class="px-4 sm:px-6 lg:px-16 pt-2 pb-2 flex justify-between items-center gap-2">
+            <div class="px-2 py-2 rounded-lg border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-gold-400/30 hover:bg-gold-400/[0.02] transition-all duration-300 leading-[1.0]">
+                <a href="Redesign.html" class="text-base sm:text-lg font-arabic font-semibold tracking-widest text-white hover:text-gold-400 transition-colors block">
+                    Bayt <span class="text-gold-400">al Hiqmah</span>
+                </a>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6 text-xs font-medium tracking-widest uppercase text-slate-400">
+                <a href="#houseofwisdom" class="hover:text-gold-400 transition-colors py-2">House of Wisdom</a>
+                <a href="#profound-reflections" class="hover:text-gold-400 transition-colors py-2">Profound Reflections</a>
+                <a href="#interactive-framework" class="hover:text-gold-400 transition-colors py-2">Interactive Learning</a>
+                <!-- HYPERLINK TO ROMAN CONVERTER -->
+                <a href="RomanNumerals.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-400 hover:bg-amber-400 hover:text-slate-950 transition-all font-semibold">
+                    <i class="fa-solid fa-calculator"></i> Roman Numerals Tool
+                </a>
+                <!-- HYPERLINK TO MUTUAL AFFECTION PAGE -->
+                <a href="MutualAffection.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold-400/30 bg-gold-400/10 text-gold-400 hover:bg-gold-400 hover:text-slate-950 transition-all font-semibold">
+                    <i class="fa-solid fa-hand-holding-heart"></i> Mutual Affection & Public Benefit
+                </a>
+            </div>
+            
+            <div class="flex items-center gap-4 flex-shrink-0 ml-auto lg:ml-0">
+                <div class="relative inline-block text-left flex-shrink-0">
+                    <select id="lang-selector" class="bg-slate-900 text-gold-400 text-[10px] sm:text-xs border border-gold-400/20 rounded-md px-1.5 sm:px-2.5 py-1.5 focus:outline-none focus:border-gold-400/60 font-mono cursor-pointer transition-colors">
+                        <option value="en">EN</option>
+                        <option value="ar">AR</option>
+                    </select>
+                </div>
+                <div class="flex items-center flex-shrink-0 select-none">
+                    <div class="px-2 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-md hover:border-gold-400/50 hover:bg-gold-400/[0.05] shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300 gap-2 inline-flex leading-[1.0] items-center justify-center text-center w-fit mx-auto whitespace-nowrap">
+                        <i class="fa-solid fa-mosque text-gold-500 mx-1"></i>          
+                        <div class="font-arabic font-semibold text-base sm:text-lg text-white tracking-widest antialiased" dir="rtl">
+                            بَيْت الحِكْمَة
+                        </div>
+                        <i class="fa-solid fa-mosque text-gold-500 mx-1"></i>          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER / HERO -->
+    <header class="relative min-h-[45vh] flex items-center justify-center pt-28 pb-20 overflow-hidden px-4 border-b border-white/10">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(6,78,59,0.15),transparent_80%)]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_60%,#0b1329_100%)]"></div>
+        <div class="max-w-4xl text-xs sm:text-base text-center relative z-10 space-y-4 flex flex-col items-center">
+ 
+                <div class="max-w-2xl text-xs sm:text-base font-semibold text-slate-400 block tracking-wider"> 
+                   Bridging Traditional Primary Source
+                    Methodologies 
+                </div>
+           
+            <p class="text-xs sm:text-sm font-mono tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-gold-400 via-amber-200 to-emerald-400 block">
+                Nurturing faith through authentic divine guidance and context  
+            </p>  
+                
+            <div class="h-[1px] w-16 bg-amber-500/50"></div>
+                        
+            <div class="inline-flex items-center justify-center gap-2 border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-md px-4 py-2 rounded-full text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-widest text-gold-400 uppercase w-fit mx-auto whitespace-nowrap shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300">
+                <i class="fa-solid fa-mosque text-gold-500 text-xl"></i>          
+                <h1 class="font-arabic leading-[1.2]"><span>بَيْت الحِكْمَة</span></h1>            
+                <i class="fa-solid fa-mosque text-gold-500 mx-1 text-xl"></i>         
+            </div> 
+
+            <div class="h-[1px] w-16 bg-amber-500/50 mx-auto"></div>  
+
+            <p class="text-xs sm:text-sm font-mono tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-gold-400 via-amber-200 to-emerald-400 block">
+                   High-end Modern Pedagogical Architectures
+            </p>  
+       
+            <!-- HYPERLINK CALLOUT BANNERS -->
+            <div class="pt-4 flex flex-wrap justify-center gap-4">
+                <a href="MutualAffection.html" class="group inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-gold-400/40 bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 hover:border-gold-400 transition-all duration-300 shadow-lg">
+                    <div class="w-8 h-8 rounded-lg bg-gold-400/10 flex items-center justify-center text-gold-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-[10px] font-mono uppercase text-gold-400 tracking-wider">Featured Module</div>
+                        <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-gold-100 transition-colors">Mutual Affection & Public Benefit <i class="fa-solid fa-arrow-right text-xs ml-1 text-gold-400"></i></div>
+                    </div>
+                </a>
+
+                <a href="RomanNumerals.html" class="group inline-flex items-center gap-3 px-5 py-2.5 rounded-xl border border-amber-400/40 bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 hover:border-amber-400 transition-all duration-300 shadow-lg">
+                    <div class="w-8 h-8 rounded-lg bg-amber-400/10 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-[10px] font-mono uppercase text-amber-400 tracking-wider">Mathematical Tool</div>
+                        <div class="text-xs sm:text-sm font-semibold text-white group-hover:text-gold-100 transition-colors">Roman Numeral Converter <i class="fa-solid fa-arrow-right text-xs ml-1 text-amber-400"></i></div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 flex-grow">
+
+        <!-- ================= CATEGORY 1: ISLAMIC KNOWLEDGE ================= -->
+        <section id="houseofwisdom" class="py-1 relative px-1 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-4 space-y-1 self-start">
+                    <div class="sticky top-[72px] lg:top-10 bg-slate-950/90 lg:bg-transparent py-2 z-20 backdrop-blur-sm lg:backdrop-blur-none">
+                        <h2 class="block">
+                            <div class="flex justify-between items-baseline border-b border-gold-400/30 py-2 text-2xl sm:text-3xl lg:text-4xl font-arabic hover:text-gold-400 bg-clip-text text-transparent bg-gradient-to-r from-gold-400 via-emerald-400 to-amber-400">
+                                <span class="font-semibold tracking-wider block"> House of Wisdom </span>                        
+                                <span class="font-mono tracking-normal select-none block" dir="rtl"> بَيْت الحِكْمَة </span>
+                            </div>
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-8 relative w-full overflow-hidden">
+                    <div id="hub-cards-grid" class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scroll-smooth premium-scrollbar transition-all duration-300">
+                        
+                        <!-- Dedicated Card Hyperlink to Mutual Affection -->
+                        <div class="min-w-[280px] sm:min-w-[320px] bg-slate-900/90 border border-gold-400/30 rounded-2xl p-6 flex flex-col justify-between hover:border-gold-400 transition-all group shadow-lg">
+                            <div class="space-y-3">
+                                <div class="inline-flex items-center gap-2 text-[10px] font-mono text-gold-400 uppercase tracking-widest bg-gold-400/10 px-2.5 py-1 rounded-full">
+                                    <i class="fa-solid fa-users"></i> Civic & Social Ethics
+                                </div>
+                                <h3 class="text-base font-bold text-white group-hover:text-gold-400 transition-colors">Mutual Affection & Public Benefit</h3>
+                                <p class="text-xs text-slate-400 font-light leading-relaxed">
+                                    An in-depth analysis on prophetic socio-behavioral dynamics, hadith verification, and community flourishing metrics.
+                                </p>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 mt-4">
+                                <a href="MutualAffection.html" class="inline-flex items-center justify-between w-full text-xs font-mono text-gold-400 hover:text-gold-300 font-semibold group-hover:translate-x-1 transition-transform">
+                                    <span>Explore Full Analysis</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Dedicated Card Hyperlink to Roman Numerals Converter -->
+                        <div class="min-w-[280px] sm:min-w-[320px] bg-slate-900/90 border border-amber-400/30 rounded-2xl p-6 flex flex-col justify-between hover:border-amber-400 transition-all group shadow-lg">
+                            <div class="space-y-3">
+                                <div class="inline-flex items-center gap-2 text-[10px] font-mono text-amber-400 uppercase tracking-widest bg-amber-400/10 px-2.5 py-1 rounded-full">
+                                    <i class="fa-solid fa-calculator"></i> Mathematical Sciences
+                                </div>
+                                <h3 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors">Roman Numeral Converter</h3>
+                                <p class="text-xs text-slate-400 font-light leading-relaxed">
+                                    Interactive greedy algorithm engine for dual conversion between decimal positional integers and Roman numerals.
+                                </p>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 mt-4">
+                                <a href="RomanNumerals.html" class="inline-flex items-center justify-between w-full text-xs font-mono text-amber-400 hover:text-amber-300 font-semibold group-hover:translate-x-1 transition-transform">
+                                    <span>Launch Converter</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Modal Display Layer (Screen 2) -->
+        <section id="hub-materials-display" class="hidden fixed inset-0 z-50 bg-slate-950/98 backdrop-blur-lg overflow-y-auto p-4 sm:p-6 lg:p-12 animate-fade-in">
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="flex justify-between items-center border-b border-white/10 pb-4 sticky top-0 bg-slate-950/90 z-20 backdrop-blur-md">
+                    <div id="sticky-title-zone" class="space-y-0.5"></div>
+                    <button id="close-display-btn" class="text-xs font-mono uppercase bg-slate-900 hover:bg-slate-800 border border-white/10 text-slate-400 hover:text-white px-3 py-1.5 rounded-md transition-colors cursor-pointer flex items-center gap-1">
+                        <i class="fa-solid fa-xmark"></i> Close Screen
+                    </button>
+                </div>
+                <div id="scrolling-desc-zone" class="border-b border-white/5 pb-4"></div>
+                <div id="materials-cards-container" class="space-y-6"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- IDENTITY MANIFESTO MODAL -->
+    <div id="identity-manifesto-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-gold-400/30 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-6 border-b border-white/10 flex items-center justify-between bg-slate-900/90">
+                <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <i class="fa-solid fa-scroll text-gold-400 text-xl"></i>
+                    <div>
+                        <h3 class="text-xl font-serif font-bold text-white">The Identity Manifesto</h3>
+                        <p class="text-xs font-mono text-gold-400">بيان الهوية لبيت الحكمة</p>
+                    </div>
+                </div>
+                <button onclick="closeIdentityModal()" class="text-slate-400 hover:text-white transition-colors p-2">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="p-6 sm:p-8 overflow-y-auto custom-scrollbar space-y-6 text-slate-300 text-sm leading-relaxed">
+                <div>
+                    <h4 class="text-base font-serif font-bold text-gold-400 mb-2">1. Mission & Preservation</h4>
+                    <p class="font-light">
+                        Bayt Al-Hikmah (The Digital House of Wisdom) is dedicated to preserving, organizing, and transmitting classical Islamic scholarship and prophetic traditions using modern web standards while upholding absolute scholastic integrity.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-base font-serif font-bold text-gold-400 mb-2">2. Scholarly Authenticity (الضبط العلمي)</h4>
+                    <p class="font-light">
+                        Every text, manuscript, and narration recorded in this platform is cross-referenced with traditional commentaries and verified chains of transmission (Isnād). We aim to bridge classic scholarship with intuitive digital interfaces.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-base font-serif font-bold text-gold-400 mb-2">3. Universal Access</h4>
+                    <p class="font-light">
+                        Knowledge in Bayt Al-Hikmah is maintained as a free, open-access public resource for scholars, students, and curious minds globally, transcending geographical and linguistic barriers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="p-4 bg-slate-950 border-t border-white/10 flex justify-between items-center text-xs text-slate-400">
+                <span>Editorial & Preservation Board</span>
+                <button onclick="closeIdentityModal()" class="px-5 py-2 rounded-lg bg-gold-400 hover:bg-gold-500 text-slate-950 font-semibold transition-colors">
+                    Close Manifesto
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE FOOTER SECTION -->
+    <footer class="bg-slate-950 border-t border-gold-400/20 text-slate-400 text-xs pt-16 pb-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center text-slate-950 font-bold text-sm">
+                            <i class="fa-solid fa-book-quran"></i>
+                        </div>
+                        <span class="text-lg font-serif font-bold text-white tracking-wide">Bayt Al-Hikmah</span>
+                    </div>
+                    <p class="text-slate-400 font-light leading-relaxed">
+                        A digital sanctuary dedicated to preserving classical Islamic heritage, authentic traditions, and scientific philosophy for modern posterity.
+                    </p>
+                    <div>
+                        <button onclick="openIdentityModal(event)" class="inline-flex items-center space-x-2 text-gold-400 hover:text-gold-300 font-medium transition-colors">
+                            <i class="fa-solid fa-scroll text-xs"></i>
+                            <span>Read Identity Manifesto</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-sm font-serif font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2">Knowledge Spheres</h3>
+                    <ul class="space-y-2 font-light">
+                        <li><a href="RomanNumerals.html" class="hover:text-gold-400 transition-colors font-medium text-amber-400">Roman Numeral Calculator</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition-colors">Prophetic Traditions (السنن)</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition-colors">Classical Texts (المتون الكلاسيكية)</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition-colors">Philosophical Treatises (الرسائل)</a></li>
+                        <li><a href="footer-reference.html" class="text-gold-400 hover:text-gold-300 font-medium transition-colors flex items-center gap-1.5"><i class="fa-solid fa-book-bookmark text-xs"></i> Footer Reference Archives</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-sm font-serif font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2">Methodology</h3>
+                    <ul class="space-y-2 font-light">
+                        <li class="flex items-center space-x-2 rtl:space-x-reverse">
+                            <i class="fa-solid fa-circle-check text-gold-400 text-[10px]"></i>
+                            <span>Isnād Verification (تحقيق الأسانيد)</span>
+                        </li>
+                        <li class="flex items-center space-x-2 rtl:space-x-reverse">
+                            <i class="fa-solid fa-circle-check text-gold-400 text-[10px]"></i>
+                            <span>Multi-lingual Translation</span>
+                        </li>
+                        <li class="flex items-center space-x-2 rtl:space-x-reverse">
+                            <i class="fa-solid fa-circle-check text-gold-400 text-[10px]"></i>
+                            <span>Open Educational Resource</span>
+                        </li>
+                        <li class="flex items-center space-x-2 rtl:space-x-reverse">
+                            <i class="fa-solid fa-circle-check text-gold-400 text-[10px]"></i>
+                            <span>Responsive Digital Typography</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-sm font-serif font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2">Preservation Motto</h3>
+                    <blockquote class="bg-slate-900/80 p-4 rounded-xl border border-white/10 italic font-serif text-slate-300">
+                        "Knowledge is a lock, and its key is the inquisitive question."
+                    </blockquote>
+                    <p class="text-[11px] font-mono text-gold-400">Bayt Al-Hikmah Digital Archives</p>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-slate-500 text-xs space-y-4 sm:space-y-0">
+ 
+                <div class="flex items-center space-x-4 text-center text-xs font-mono tracking-wider">
+                    <div>&copy; 2026 <span class="font-arabic font-semibold tracking-widest text-white hover:text-gold-400 transition-colors"> Bayt al Hiqmah </span> | Preserving sacred knowledge for the digital age</div>
+                </div>
+                        
+                <!-- FOOTER REFERENCE HYPERLINK AT THE BOTTOM -->
+                <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                    <a href="footer-reference.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-400/30 bg-gold-400/10 text-gold-400 hover:bg-gold-400 hover:text-slate-950 transition-all text-xs font-mono font-semibold">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> AshadMauritiusIO
+                    </a>
+                    <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-brands fa-github text-base"></i></a>
+                    <a href="#" class="hover:text-gold-400 transition-colors"><i class="fa-solid fa-book-bookmark text-base"></i></a>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-8 h-8 rounded-full bg-slate-900 border border-white/10 hover:border-gold-400 hover:text-gold-400 flex items-center justify-center transition-colors" title="Back to top">
+                        <i class="fa-solid fa-arrow-up text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Toggle Controller Utility
+        function toggleInteractivePanel(headerElement) {
+            const container = headerElement.parentElement;
+            const toggleZone = container.querySelector('.content-toggle-zone');
+            const icon = headerElement.querySelector('.toggle-icon');
+            
+            if (toggleZone.classList.contains('expanded')) {
+                toggleZone.classList.remove('expanded');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                toggleZone.classList.add('expanded');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Identity Manifesto Modal Controls
+        function openIdentityModal(e) {
+            if (e) e.preventDefault();
+            const modal = document.getElementById('identity-manifesto-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        function closeIdentityModal() {
+            const modal = document.getElementById('identity-manifesto-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeIdentityModal();
+        });
+
+        document.getElementById('lang-selector').addEventListener('change', (e) => {
+            document.body.setAttribute('dir', e.target.value === 'ar' ? 'rtl' : 'ltr');
+        });
+    </script>
+</body>
+</html>
