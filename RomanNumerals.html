@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman Numeral Converter | Bayt Al-Hikmah</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 5px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.2);
+            border-radius: 999px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.4);
+        }
+    </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        slate: { 950: '#0b1329' },
+                        gold: { 100: '#f4ebd0', 400: '#d4af37', 500: '#aa7c11' },
+                        emeraldCustom: { 800: '#064e3b', 900: '#022c22' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans selection:bg-gold-400 selection:text-slate-950 antialiased overflow-x-hidden min-h-screen flex flex-col justify-between">
+    
+    <!-- NAVIGATION BAR -->
+    <nav id="main-nav" class="fixed top-0 left-0 w-full z-40 bg-slate-950/90 backdrop-blur-md border-b border-white/5">
+        <div class="px-4 sm:px-6 lg:px-16 pt-2 pb-2 flex justify-between items-center gap-2">
+            <div class="px-2 py-2 rounded-lg border border-white/10 bg-white/[0.02] backdrop-blur-sm hover:border-gold-400/30 hover:bg-gold-400/[0.02] transition-all duration-300 leading-[1.0]">
+                <a href="New.html" class="text-base sm:text-lg font-arabic font-semibold tracking-widest text-white hover:text-gold-400 transition-colors block">
+                    Bayt <span class="text-gold-400">al Hiqmah</span>
+                </a>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6 text-xs font-medium tracking-widest uppercase text-slate-400">
+                <a href="New.html#houseofwisdom" class="hover:text-gold-400 transition-colors py-2">House of Wisdom</a>
+                <a href="New.html#profound-reflections" class="hover:text-gold-400 transition-colors py-2">Profound Reflections</a>
+                <a href="MutualAffection.html" class="hover:text-gold-400 transition-colors py-2">Mutual Affection</a>
+                <!-- ACTIVE PAGE LINK -->
+                <a href="RomanNumerals.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gold-400/30 bg-gold-400/10 text-gold-400 hover:bg-gold-400 hover:text-slate-950 transition-all font-semibold">
+                    <i class="fa-solid fa-calculator"></i> Roman Converter
+                </a>
+            </div>
+            
+            <div class="flex items-center gap-4 flex-shrink-0 ml-auto lg:ml-0">
+                <div class="flex items-center flex-shrink-0 select-none">
+                    <div class="px-2 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-md hover:border-gold-400/50 hover:bg-gold-400/[0.05] shadow-[0_0_15px_rgba(16,185,129,0.05)] transition-all duration-300 gap-2 inline-flex leading-[1.0] items-center justify-center text-center w-fit mx-auto whitespace-nowrap">
+                        <i class="fa-solid fa-mosque text-gold-500 mx-1"></i>          
+                        <div class="font-arabic font-semibold text-base sm:text-lg text-white tracking-widest antialiased" dir="rtl">
+                            بَيْت الحِكْمَة
+                        </div>
+                        <i class="fa-solid fa-mosque text-gold-500 mx-1"></i>          
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HEADER / HERO -->
+    <header class="relative min-h-[35vh] flex items-center justify-center pt-28 pb-12 overflow-hidden px-4 border-b border-white/10">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(6,78,59,0.15),transparent_80%)]"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_60%,#0b1329_100%)]"></div>
+        <div class="max-w-4xl text-xs sm:text-base text-center relative z-10 space-y-4 flex flex-col items-center">
+            
+            <div class="max-w-2xl text-xs sm:text-base font-semibold text-slate-400 block tracking-wider uppercase font-mono"> 
+                Classical Mathematical Sciences & Numerical Systems
+            </div>
+                
+            <div class="h-[1px] w-16 bg-amber-500/50"></div>
+                        
+            <div class="inline-flex items-center justify-center gap-2 border border-emerald-500/30 bg-emerald-500/5 backdrop-blur-md px-4 py-2 rounded-full text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-widest text-gold-400 uppercase w-fit mx-auto whitespace-nowrap shadow-[0_0_15px_rgba(16,185,129,0.05)]">
+                <i class="fa-solid fa-calculator text-gold-500 text-xl"></i>          
+                <h1 class="font-serif leading-[1.2]">Roman Numeral Converter</h1>            
+            </div> 
+
+            <div class="h-[1px] w-16 bg-amber-500/50 mx-auto"></div>  
+
+            <p class="text-xs sm:text-sm font-mono tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-gold-400 via-amber-200 to-emerald-400 block">
+                Bi-directional Conversion Engine with Subtractive & Positional Parsing
+            </p>  
+        </div>
+    </header>
+
+    <!-- MAIN CONVERTER SECTION -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12 flex-grow">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- CARD 1: DECIMAL TO ROMAN -->
+            <div class="bg-slate-900/90 border border-gold-400/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                            <i class="fa-solid fa-arrow-right-1-9 text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-white font-serif">Decimal to Roman</h2>
+                            <p class="text-[10px] font-mono text-gold-400 uppercase tracking-widest">Greedy Subtraction Engine</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500">Range: 1 - 3,999</span>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-xs font-mono uppercase tracking-wider text-slate-300">Enter Integer (Decimal)</label>
+                    <input type="number" id="decimalInput" min="1" max="3999" placeholder="e.g. 461" 
+                           class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-gold-400/60 font-mono text-sm transition-colors"
+                           oninput="processDecimalToRoman()">
+                </div>
+
+                <div class="p-4 bg-slate-950 rounded-xl border border-white/5 space-y-2">
+                    <div class="text-[10px] font-mono uppercase tracking-widest text-slate-400">Converted Result</div>
+                    <div id="decimalResult" class="text-2xl sm:text-3xl font-mono font-bold text-gold-400 min-h-[40px] flex items-center">
+                        —
+                    </div>
+                </div>
+
+                <div id="decimalBreakdown" class="text-xs font-mono text-slate-400 bg-slate-950/50 p-3 rounded-lg border border-white/5 hidden">
+                    <!-- Dynamic Breakdown Output -->
+                </div>
+            </div>
+
+            <!-- CARD 2: ROMAN TO DECIMAL -->
+            <div class="bg-slate-900/90 border border-gold-400/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl relative overflow-hidden">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gold-400/10 border border-gold-400/30 flex items-center justify-center text-gold-400">
+                            <i class="fa-solid fa-font text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-base font-bold text-white font-serif">Roman to Decimal</h2>
+                            <p class="text-[10px] font-mono text-gold-400 uppercase tracking-widest">Lookahead Subtractive Parser</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-mono text-slate-500">Standard Notation</span>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="block text-xs font-mono uppercase tracking-wider text-slate-300">Enter Roman Numeral</label>
+                    <input type="text" id="romanInput" placeholder="e.g. CDLXI" uppercase
+                           class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-gold-400/60 font-mono text-sm uppercase transition-colors"
+                           oninput="processRomanToDecimal()">
+                </div>
+
+                <div class="p-4 bg-slate-950 rounded-xl border border-white/5 space-y-2">
+                    <div class="text-[10px] font-mono uppercase tracking-widest text-slate-400">Converted Result</div>
+                    <div id="romanResult" class="text-2xl sm:text-3xl font-mono font-bold text-emerald-400 min-h-[40px] flex items-center">
+                        —
+                    </div>
+                </div>
+
+                <div id="romanBreakdown" class="text-xs font-mono text-slate-400 bg-slate-950/50 p-3 rounded-lg border border-white/5 hidden">
+                    <!-- Dynamic Breakdown Output -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- REFERENCE MATRIX TABLE -->
+        <div class="bg-slate-900 border border-white/10 rounded-2xl p-6 space-y-4">
+            <h3 class="text-sm font-serif font-bold text-white uppercase tracking-wider">Atomic Lookup Reference Matrix</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-center text-xs font-mono">
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">I</span> 1</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">IV</span> 4</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">V</span> 5</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">IX</span> 9</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">X</span> 10</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">XL</span> 40</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">L</span> 50</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">XC</span> 90</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">C</span> 100</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">CD</span> 400</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">D</span> 500</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5"><span class="text-gold-400 block font-bold">CM</span> 900</div>
+                <div class="bg-slate-950 p-2.5 rounded-lg border border-white/5 col-span-2 sm:col-span-2 md:col-span-1"><span class="text-gold-400 block font-bold">M</span> 1000</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-gold-400/20 text-slate-400 text-xs py-8 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="font-mono text-xs">
+                &copy; 2026 <a href="New.html" class="text-white hover:text-gold-400 font-arabic font-semibold">Bayt al Hiqmah</a> | Mathematical Sciences Unit
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="New.html" class="hover:text-gold-400 transition-colors">Return Home</a>
+                <a href="MutualAffection.html" class="hover:text-gold-400 transition-colors">Mutual Affection</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CONVERSION ENGINE JAVASCRIPT -->
+    <script>
+        // ALGORITHM 1: DECIMAL TO ROMAN NUMERAL (Greedy Subtraction Engine)
+        function decimalToRoman(num) {
+            if (!Number.isInteger(num) || num < 1 || num > 3999) {
+                return { result: "Out of Range (1-3999)", steps: [] };
+            }
+
+            const lookupTable = [
+                { val: 1000, sym: 'M' },
+                { val: 900,  sym: 'CM' },
+                { val: 500,  sym: 'D' },
+                { val: 400,  sym: 'CD' },
+                { val: 100,  sym: 'C' },
+                { val: 90,   sym: 'XC' },
+                { val: 50,   sym: 'L' },
+                { val: 40,   sym: 'XL' },
+                { val: 10,   sym: 'X' },
+                { val: 9,    sym: 'IX' },
+                { val: 5,    sym: 'V' },
+                { val: 4,    sym: 'IV' },
+                { val: 1,    sym: 'I' }
+            ];
+
+            let romanStr = '';
+            let remainder = num;
+            let steps = [];
+
+            for (let i = 0; i < lookupTable.length; i++) {
+                const { val, sym } = lookupTable[i];
+                while (remainder >= val) {
+                    romanStr += sym;
+                    remainder -= val;
+                    steps.push(`${sym} (${val})`);
+                }
+            }
+
+            return { result: romanStr, steps: steps };
+        }
+
+        // ALGORITHM 2: ROMAN NUMERAL TO DECIMAL (Lookahead Subtractive Parser)
+        function romanToDecimal(str) {
+            if (!str || typeof str !== 'string') return { result: "Invalid Input", steps: [] };
+            
+            const cleanStr = str.trim().toUpperCase();
+            
+            // Standard Roman Numeral Validation Regex (1 to 3999)
+            const romanRegex = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
+            if (!romanRegex.test(cleanStr)) {
+                return { result: "Invalid Syntax", steps: [] };
+            }
+
+            const symbolMap = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };
+            let total = 0;
+            let steps = [];
+
+            for (let i = 0; i < cleanStr.length; i++) {
+                const currentVal = symbolMap[cleanStr[i]];
+                const nextVal = symbolMap[cleanStr[i + 1]];
+
+                if (nextVal && currentVal < nextVal) {
+                    total -= currentVal;
+                    steps.push(`-${currentVal} (${cleanStr[i]} < ${cleanStr[i+1]})`);
+                } else {
+                    total += currentVal;
+                    steps.push(`+${currentVal} (${cleanStr[i]})`);
+                }
+            }
+
+            return { result: total, steps: steps };
+        }
+
+        // UI Event Handlers
+        function processDecimalToRoman() {
+            const inputVal = parseInt(document.getElementById('decimalInput').value, 10);
+            const resultBox = document.getElementById('decimalResult');
+            const breakdownBox = document.getElementById('decimalBreakdown');
+
+            if (isNaN(inputVal)) {
+                resultBox.innerText = '—';
+                breakdownBox.classList.add('hidden');
+                return;
+            }
+
+            const { result, steps } = decimalToRoman(inputVal);
+            resultBox.innerText = result;
+
+            if (steps.length > 0) {
+                breakdownBox.innerHTML = `<span class="text-gold-400 font-bold">Decomposition:</span> ${steps.join(' + ')}`;
+                breakdownBox.classList.remove('hidden');
+            } else {
+                breakdownBox.classList.add('hidden');
+            }
+        }
+
+        function processRomanToDecimal() {
+            const inputVal = document.getElementById('romanInput').value;
+            const resultBox = document.getElementById('romanResult');
+            const breakdownBox = document.getElementById('romanBreakdown');
+
+            if (!inputVal.trim()) {
+                resultBox.innerText = '—';
+                breakdownBox.classList.add('hidden');
+                return;
+            }
+
+            const { result, steps } = romanToDecimal(inputVal);
+            resultBox.innerText = result;
+
+            if (steps.length > 0) {
+                breakdownBox.innerHTML = `<span class="text-emerald-400 font-bold">Evaluation:</span> ${steps.join(' ')} = ${result}`;
+                breakdownBox.classList.remove('hidden');
+            } else {
+                breakdownBox.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
